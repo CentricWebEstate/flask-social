@@ -26,7 +26,7 @@ config = {
     'request_token_url': None,
     'access_token_method': 'POST',
     'request_token_params': {
-        'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me'
+        'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email'
         #add ' https://www.googleapis.com/auth/userinfo.email' to scope to also get email
     }
 }
@@ -77,7 +77,8 @@ def get_connection_values(response, **kwargs):
         display_name=profile['name'],
         full_name=profile['name'],
         profile_url=profile.get('link'),
-        image_url=profile.get('picture')
+        image_url=profile.get('picture'),
+	email=profile.get('email',None)
     )
 
 def get_token_pair_from_response(response):
